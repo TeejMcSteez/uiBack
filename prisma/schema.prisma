@@ -9,10 +9,11 @@ datasource db {
 }
 
 model logs {
-  id         Int       @id @default(autoincrement())
-  name       String
-  message    String
-  created_at DateTime? @default(now()) @db.Timestamptz(6)
+  id        Int      @id @default(autoincrement())
+  timestamp DateTime @db.Timestamp(6)
+  worker    String?
+  component String?
+  log       String
 }
 
 model news {
