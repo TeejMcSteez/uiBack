@@ -42,14 +42,16 @@ fastify.get("/news/:id", async function (request, reply) {
     }
 });
 fastify.get("/logs/:now", async function (request, reply) {
-    const now = Number(request.params.now);
-    fastify.log.info("Date recieved:", now);
+    const now = parseInt(request.params.now);
+    fastify.log.info(`Date received: ${now}`);
     const baseDate = new Date(now);
     const start = new Date(baseDate);
     start.setUTCHours(0, 0, 0, 0);
 
     const end = new Date(baseDate);
     end.setUTCHours(29, 59, 59, 999);
+    fastify.log.info(`Start search params: ${start}`);
+    fastify.log.info(`End search params: ${end}`);
 
     try {
         if (!start || !end) {
